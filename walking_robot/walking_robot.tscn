@@ -1,0 +1,295 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://walking_robot/walking_robot.gd" type="Script" id=1]
+[ext_resource path="res://walking_robot/walking_robot.png" type="Texture" id=2]
+[ext_resource path="res://walking_robot/states/robot_idle.gd" type="Script" id=3]
+[ext_resource path="res://walking_robot/states/robot_run.gd" type="Script" id=4]
+[ext_resource path="res://walking_robot/states/robot_fire.gd" type="Script" id=5]
+[ext_resource path="res://sfx/enemy_shoot.wav" type="AudioStream" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 5, 7 )
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "cycle"
+length = 2.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+
+resource_name = "fire"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotate/walking_robot:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 20 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotate/face:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 2, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+
+length = 0.5
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotate/walking_robot:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5, 6, 7 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotate/face:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 2 ), Vector2( 0, 1 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+
+length = 0.56
+loop = true
+step = 0.07
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotate/walking_robot:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42, 0.49 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11, 12, 13, 14, 15, 16 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotate/face:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42, 0.49 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -1 ), Vector2( 0, -2 ), Vector2( 0, 2 ), Vector2( 0, 0 ), Vector2( 0, -1 ), Vector2( 0, -2 ), Vector2( 0, 2 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.07, 0.35 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "dust_run"
+}, {
+"args": [  ],
+"method": "dust_run"
+} ]
+}
+
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 7, 9 )
+
+[node name="walking_robot" type="KinematicBody2D"]
+
+z_index = 4
+input_pickable = false
+collision_layer = 0
+collision_mask = 5
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Visibility", "Z Index", "collision" ]
+dir_nxt = 1
+
+[node name="collision" type="CollisionShape2D" parent="." index="0"]
+
+position = Vector2( 0, 9 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="rotate" type="Node2D" parent="." index="1"]
+
+editor/display_folded = true
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="walking_robot" type="Sprite" parent="rotate" index="0"]
+
+light_mask = 2
+texture = ExtResource( 2 )
+vframes = 8
+hframes = 8
+frame = 20
+_sections_unfolded = [ "Animation", "Transform", "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="face" type="Sprite" parent="rotate" index="1"]
+
+modulate = Color( 1, 1, 1, 0.496371 )
+position = Vector2( 2, 0 )
+texture = ExtResource( 2 )
+vframes = 8
+hframes = 8
+frame = 1
+_sections_unfolded = [ "Animation", "Transform", "Visibility" ]
+
+[node name="fx" type="AnimationPlayer" parent="rotate/face" index="0"]
+
+root_node = NodePath("..")
+autoplay = "cycle"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/cycle = SubResource( 2 )
+blend_times = [  ]
+
+[node name="down" type="RayCast2D" parent="rotate" index="2"]
+
+position = Vector2( 3, 16 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 2 )
+collision_mask = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="front" type="RayCast2D" parent="rotate" index="3"]
+
+position = Vector2( 5, 13 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 2, 0 )
+collision_mask = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="firepos" type="Position2D" parent="rotate" index="4"]
+
+position = Vector2( 4, 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="anim" type="AnimationPlayer" parent="." index="2"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/fire = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/run = SubResource( 5 )
+blend_times = [  ]
+
+[node name="states" type="Node" parent="." index="3"]
+
+[node name="robot_idle" type="Node" parent="states" index="0"]
+
+script = ExtResource( 3 )
+
+[node name="robot_run" type="Node" parent="states" index="1"]
+
+script = ExtResource( 4 )
+
+[node name="robot_fire" type="Node" parent="states" index="2"]
+
+script = ExtResource( 5 )
+
+[node name="hitbox" type="Area2D" parent="." index="4"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 0
+collision_mask = 4096
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" index="0"]
+
+position = Vector2( 1, 7 )
+shape = SubResource( 6 )
+
+[node name="visibility" type="VisibilityNotifier2D" parent="." index="5"]
+
+position = Vector2( 0, 7 )
+rect = Rect2( -5, -5, 10, 10 )
+
+[node name="shoot" type="AudioStreamPlayer" parent="." index="6"]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "sfx"
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+
+

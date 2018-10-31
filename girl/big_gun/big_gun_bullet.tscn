@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://girl/big_gun/big_gun_bullet.gd" type="Script" id=1]
+[ext_resource path="res://girl/girl.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 4.0
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 4, 3 )
+
+[node name="big_gun_bullet" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 0
+collision_mask = 5
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="sprite" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+vframes = 8
+hframes = 16
+frame = 101
+_sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="visible" type="VisibilityNotifier2D" parent="." index="1"]
+
+visible = false
+rect = Rect2( -10, -10, 20, 20 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="collision" type="CollisionShape2D" parent="." index="2"]
+
+visible = false
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="interactbox" type="Area2D" parent="." index="3"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 0
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="collisionshape" type="CollisionShape2D" parent="interactbox" index="0"]
+
+shape = SubResource( 2 )
+
+[node name="damagebox" type="Area2D" parent="." index="4"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 4096
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="collisionshape" type="CollisionShape2D" parent="damagebox" index="0"]
+
+shape = SubResource( 2 )
+
+[connection signal="screen_exited" from="visible" to="." method="_on_visible_screen_exited"]
+
+[connection signal="area_entered" from="interactbox" to="." method="_on_interactbox_area_entered"]
+
+[connection signal="area_entered" from="damagebox" to="." method="_on_damagebox_area_entered"]
+
+

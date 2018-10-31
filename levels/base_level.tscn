@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://environment/tilesets/bg_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://environment/tilesets/main_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://girl/girl.tscn" type="PackedScene" id=3]
+[ext_resource path="res://environment/finish_area/finish_area.tscn" type="PackedScene" id=4]
+
+[node name="level_04" type="Node2D" index="0"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bg" type="TileMap" parent="." index="0"]
+
+visible = false
+light_mask = 4
+mode = 0
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = true
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( -851884, 536870913, 0, -851883, 536870913, 0, -851882, 536870913, 0, -851881, 536870913, 0, -786348, 536870913, 0, -786347, 536870913, 0, -786346, 536870913, 0, -786345, 536870913, 0, -720815, 0, 0, -720814, 536870913, 0, -720813, 536870913, 0, -720812, 536870913, 0, -720811, 536870913, 0, -720810, 536870913, 0, -720809, 536870913, 0, -720808, 536870913, 0, -720807, 536870913, 0, -720806, 536870913, 0, -720805, 536870913, 0, -655279, 536870915, 0, -655278, 536870913, 0, -655277, 536870913, 0, -655276, 536870913, 0, -655275, 536870913, 0, -655274, 536870913, 0, -655273, 536870913, 0, -655272, 536870913, 0, -655271, 536870913, 0, -655270, 536870913, 0, -655269, 536870913, 0, -589743, 0, 0, -589742, 536870913, 0, -589741, 536870913, 0, -589740, 536870913, 0, -589739, 536870913, 0, -589738, 536870913, 0, -589737, 536870913, 0, -589736, 536870913, 0, -589735, 536870913, 0, -589734, 536870913, 0, -589733, 536870913, 0, -524207, 536870913, 0, -524206, 536870913, 0, -524205, 536870913, 0, -524204, 536870913, 0, -524203, 536870913, 0, -524202, 536870913, 0, -524201, 536870913, 0, -524200, 536870913, 0, -524199, 536870913, 0, -524198, 536870913, 0, 327749, 1, 0, 327750, 1, 0, 327751, 1, 0, 327752, 1, 0, 327753, 1, 0, 327754, 1, 0, 327755, 1, 0, 393285, 1, 0, 393286, 536870913, 0, 393287, 536870913, 0, 393288, 536870913, 0, 393289, 536870913, 0, 393290, 536870913, 0, 393291, 1, 0, 458818, 0, 0, 458819, 1, 0, 458820, 1, 0, 458821, 1, 0, 458822, 536870913, 0, 458823, 536870913, 0, 458824, 536870913, 0, 458825, 536870913, 0, 458826, 536870913, 0, 458827, 1, 0, 524354, 0, 0, 524355, 536870913, 0, 524356, 536870913, 0, 524357, 536870913, 0, 524358, 536870913, 0, 524359, 536870913, 0, 524360, 536870913, 0, 524361, 536870913, 0, 524362, 536870913, 0, 524363, 1, 0, 589890, 536870915, 0, 589891, 536870913, 0, 589892, 536870913, 0, 589893, 536870913, 0, 589894, 536870913, 0, 589895, 536870913, 0, 589896, 536870913, 0, 589897, 536870913, 0, 589898, 536870913, 0, 589899, 1, 0, 655426, 1, 0, 655427, 1, 0, 655428, 1, 0, 655429, 1, 0, 655430, 1, 0, 655431, 1, 0, 655432, 1, 0, 655433, 1, 0, 655434, 1, 0, 655435, 1, 0 )
+_sections_unfolded = [ "Cell", "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="walls" type="TileMap" parent="." index="1"]
+
+mode = 0
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = true
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 7
+format = 1
+tile_data = PoolIntArray( 65535, 4, 0, 131071, 4, 0, 196607, 4, 0, 262143, 4, 0, 327679, 4, 0, 393215, 4, 0, 458751, 4, 0, 524287, 4, 0, 589823, 4, 0, 655359, 4, 0, 720895, 4, 0, 786431, 4, 0, 851967, 4, 0 )
+_sections_unfolded = [ "Cell", "Occluder" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="girl" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 72, 92 )
+
+[node name="camera_limit_NW" type="Position2D" parent="." index="3"]
+
+position = Vector2( 0, -304 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="camera_limit_SE" type="Position2D" parent="." index="4"]
+
+position = Vector2( 1440, 236 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="finish_area" parent="." index="5" instance=ExtResource( 4 )]
+
+position = Vector2( 1448, -148 )
+
+

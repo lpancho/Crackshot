@@ -1,0 +1,176 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://levels/level_05/level_05.gd" type="Script" id=1]
+[ext_resource path="res://environment/tilesets/bg_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://environment/tilesets/main_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://girl/girl.tscn" type="PackedScene" id=4]
+[ext_resource path="res://environment/finish_area/finish_area.tscn" type="PackedScene" id=5]
+[ext_resource path="res://environment/background/ParallaxBackground.tscn" type="PackedScene" id=6]
+[ext_resource path="res://font/tinyfont.tres" type="BitmapFont" id=7]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "cycle"
+length = 15.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5, 15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 228 ), Vector2( 0, 228 ), Vector2( 0, -24 ) ]
+}
+
+[node name="level_05" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bg" type="TileMap" parent="." index="0"]
+
+visible = false
+light_mask = 4
+mode = 0
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = true
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( -851884, 536870913, 0, -851883, 536870913, 0, -851882, 536870913, 0, -851881, 536870913, 0, -786348, 536870913, 0, -786347, 536870913, 0, -786346, 536870913, 0, -786345, 536870913, 0, -720815, 0, 0, -720814, 536870913, 0, -720813, 536870913, 0, -720812, 536870913, 0, -720811, 536870913, 0, -720810, 536870913, 0, -720809, 536870913, 0, -720808, 536870913, 0, -720807, 536870913, 0, -720806, 536870913, 0, -720805, 536870913, 0, -655279, 536870915, 0, -655278, 536870913, 0, -655277, 536870913, 0, -655276, 536870913, 0, -655275, 536870913, 0, -655274, 536870913, 0, -655273, 536870913, 0, -655272, 536870913, 0, -655271, 536870913, 0, -655270, 536870913, 0, -655269, 536870913, 0, -589743, 0, 0, -589742, 536870913, 0, -589741, 536870913, 0, -589740, 536870913, 0, -589739, 536870913, 0, -589738, 536870913, 0, -589737, 536870913, 0, -589736, 536870913, 0, -589735, 536870913, 0, -589734, 536870913, 0, -589733, 536870913, 0, -524207, 536870913, 0, -524206, 536870913, 0, -524205, 536870913, 0, -524204, 536870913, 0, -524203, 536870913, 0, -524202, 536870913, 0, -524201, 536870913, 0, -524200, 536870913, 0, -524199, 536870913, 0, -524198, 536870913, 0, 327749, 1, 0, 327750, 1, 0, 327751, 1, 0, 327752, 1, 0, 327753, 1, 0, 327754, 1, 0, 327755, 1, 0, 393285, 1, 0, 393286, 536870913, 0, 393287, 536870913, 0, 393288, 536870913, 0, 393289, 536870913, 0, 393290, 536870913, 0, 393291, 1, 0, 458818, 0, 0, 458819, 1, 0, 458820, 1, 0, 458821, 1, 0, 458822, 536870913, 0, 458823, 536870913, 0, 458824, 536870913, 0, 458825, 536870913, 0, 458826, 536870913, 0, 458827, 1, 0, 524354, 0, 0, 524355, 536870913, 0, 524356, 536870913, 0, 524357, 536870913, 0, 524358, 536870913, 0, 524359, 536870913, 0, 524360, 536870913, 0, 524361, 536870913, 0, 524362, 536870913, 0, 524363, 1, 0, 589890, 536870915, 0, 589891, 536870913, 0, 589892, 536870913, 0, 589893, 536870913, 0, 589894, 536870913, 0, 589895, 536870913, 0, 589896, 536870913, 0, 589897, 536870913, 0, 589898, 536870913, 0, 589899, 1, 0, 655426, 1, 0, 655427, 1, 0, 655428, 1, 0, 655429, 1, 0, 655430, 1, 0, 655431, 1, 0, 655432, 1, 0, 655433, 1, 0, 655434, 1, 0, 655435, 1, 0 )
+_sections_unfolded = [ "Cell", "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="walls" type="TileMap" parent="." index="1"]
+
+mode = 0
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = true
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 7
+format = 1
+tile_data = PoolIntArray( -524289, 27, 0, -458753, 27, 0, -393217, 27, 0, -458725, 25, 0, -327681, 27, 0, -393189, 25, 0, -262145, 27, 0, -327653, 25, 0, -196609, 27, 0, -262117, 25, 0, -131073, 27, 0, -196581, 25, 0, -65537, 27, 0, -131045, 25, 0, -1, 27, 0, -65509, 25, 0, 65535, 4, 0, 27, 25, 0, 131071, 4, 0, 65563, 25, 0, 196607, 4, 0, 131099, 25, 0, 262143, 4, 0, 196635, 25, 0, 327679, 4, 0, 262171, 25, 0, 393215, 4, 0, 327707, 25, 0, 458751, 4, 0, 393220, 20, 0, 393232, 19, 0, 393238, 21, 0, 393240, 19, 0, 393243, 25, 0, 524287, 4, 0, 458752, 23, 0, 458753, 23, 0, 458754, 23, 0, 458755, 42, 0, 458756, 40, 0, 458757, 23, 0, 458758, 23, 0, 458759, 41, 0, 458760, 23, 0, 458761, 23, 0, 458762, 23, 0, 458763, 23, 0, 458764, 23, 0, 458765, 23, 0, 458766, 23, 0, 458767, 23, 0, 458768, 41, 0, 458769, 23, 0, 458770, 23, 0, 458771, 23, 0, 458772, 40, 0, 458773, 23, 0, 458774, 23, 0, 458775, 23, 0, 458776, 41, 0, 458777, 23, 0, 458778, 23, 0, 458779, 25, 0, 589823, 4, 0, 524288, 26, 0, 524289, 26, 0, 524290, 26, 0, 524291, 26, 0, 524292, 26, 0, 524293, 26, 0, 524294, 26, 0, 524295, 26, 0, 524296, 26, 0, 524297, 26, 0, 524298, 26, 0, 524299, 26, 0, 524300, 26, 0, 524301, 26, 0, 524302, 26, 0, 524303, 26, 0, 524304, 26, 0, 524305, 26, 0, 524306, 26, 0, 524307, 26, 0, 524308, 26, 0, 524309, 26, 0, 524310, 26, 0, 524311, 26, 0, 524312, 26, 0, 524313, 26, 0, 524314, 26, 0, 524315, 25, 0, 655359, 4, 0, 589824, 26, 0, 589825, 26, 0, 589826, 26, 0, 589827, 26, 0, 589828, 26, 0, 589829, 26, 0, 589830, 26, 0, 589831, 26, 0, 589832, 26, 0, 589833, 26, 0, 589834, 26, 0, 589835, 26, 0, 589836, 26, 0, 589837, 26, 0, 589838, 26, 0, 589839, 26, 0, 589840, 26, 0, 589841, 26, 0, 589842, 26, 0, 589843, 26, 0, 589844, 26, 0, 589845, 26, 0, 589846, 26, 0, 589847, 26, 0, 589848, 26, 0, 589849, 26, 0, 589850, 26, 0, 589851, 25, 0, 720895, 4, 0, 655360, 26, 0, 655361, 26, 0, 655362, 26, 0, 655363, 26, 0, 655364, 26, 0, 655365, 26, 0, 655366, 26, 0, 655367, 26, 0, 655368, 26, 0, 655369, 26, 0, 655370, 26, 0, 655371, 26, 0, 655372, 26, 0, 655373, 26, 0, 655374, 26, 0, 655375, 26, 0, 655376, 26, 0, 655377, 26, 0, 655378, 26, 0, 655379, 26, 0, 655380, 26, 0, 655381, 26, 0, 655382, 26, 0, 655383, 26, 0, 655384, 26, 0, 655385, 26, 0, 655386, 26, 0, 655387, 25, 0, 786431, 4, 0, 720896, 26, 0, 720897, 26, 0, 720898, 26, 0, 720899, 26, 0, 720900, 26, 0, 720901, 26, 0, 720902, 26, 0, 720903, 26, 0, 720904, 26, 0, 720905, 26, 0, 720906, 26, 0, 720907, 26, 0, 720908, 26, 0, 720909, 26, 0, 720910, 26, 0, 720911, 26, 0, 720912, 26, 0, 720913, 26, 0, 720914, 26, 0, 720915, 26, 0, 720916, 26, 0, 720917, 26, 0, 720918, 26, 0, 720919, 26, 0, 720920, 26, 0, 720921, 26, 0, 720922, 26, 0, 720923, 25, 0, 851967, 4, 0, 786432, 26, 0, 786433, 26, 0, 786434, 26, 0, 786435, 26, 0, 786436, 26, 0, 786437, 26, 0, 786438, 26, 0, 786439, 26, 0, 786440, 26, 0, 786441, 26, 0, 786442, 26, 0, 786443, 26, 0, 786444, 26, 0, 786445, 26, 0, 786446, 26, 0, 786447, 26, 0, 786448, 26, 0, 786449, 26, 0, 786450, 26, 0, 786451, 26, 0, 786452, 26, 0, 786453, 26, 0, 786454, 26, 0, 786455, 26, 0, 786456, 26, 0, 786457, 26, 0, 786458, 26, 0, 786459, 25, 0, 917503, 26, 0, 851968, 26, 0, 851969, 26, 0, 851970, 26, 0, 851971, 26, 0, 851972, 26, 0, 851973, 26, 0, 851974, 26, 0, 851975, 26, 0, 851976, 26, 0, 851977, 26, 0, 851978, 26, 0, 851979, 26, 0, 851980, 26, 0, 851981, 26, 0, 851982, 26, 0, 851983, 26, 0, 851984, 26, 0, 851985, 26, 0, 851986, 26, 0, 851987, 26, 0, 851988, 26, 0, 851989, 26, 0, 851990, 26, 0, 851991, 26, 0, 851992, 26, 0, 851993, 26, 0, 851994, 26, 0, 851995, 25, 0 )
+_sections_unfolded = [ "Cell", "Occluder" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="girl" parent="." index="2" instance=ExtResource( 4 )]
+
+position = Vector2( 20, 96 )
+
+[node name="camera_limit_NW" type="Position2D" parent="." index="3"]
+
+position = Vector2( 0, -36 )
+
+[node name="camera_limit_SE" type="Position2D" parent="." index="4"]
+
+position = Vector2( 432, 152 )
+
+[node name="finish_area" parent="." index="5" instance=ExtResource( 5 )]
+
+position = Vector2( 564, 76 )
+
+[node name="ParallaxBackground" parent="." index="6" instance=ExtResource( 6 )]
+
+[node name="endline" type="CanvasLayer" parent="." index="7"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="Label" type="Label" parent="endline" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -24.0
+margin_bottom = -24.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Thanks for playing this game!
+
+I hope you had as much fun playing as I did making it.
+
+
+Credits
+
+Programming, art, sfx and music: Securas
+Title Screen art: DBR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ESC to quit"
+align = 1
+valign = 1
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_fonts" ]
+
+[node name="anim" type="AnimationPlayer" parent="endline" index="1"]
+
+root_node = NodePath("..")
+autoplay = "cycle"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/cycle = SubResource( 1 )
+blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
+
+

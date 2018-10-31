@@ -1,0 +1,925 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://girl/girl.gd" type="Script" id=1]
+[ext_resource path="res://girl/girl.png" type="Texture" id=2]
+[ext_resource path="res://girl/big_gun/big_gun.tscn" type="PackedScene" id=3]
+[ext_resource path="res://girl/states/idle.gd" type="Script" id=4]
+[ext_resource path="res://girl/states/fall.gd" type="Script" id=5]
+[ext_resource path="res://girl/states/run.gd" type="Script" id=6]
+[ext_resource path="res://girl/states/jump.gd" type="Script" id=7]
+[ext_resource path="res://girl/states/double_jump.gd" type="Script" id=8]
+[ext_resource path="res://girl/states/interact.gd" type="Script" id=9]
+[ext_resource path="res://girl/altar.gd" type="Script" id=10]
+[ext_resource path="res://girl/states/hit.gd" type="Script" id=11]
+[ext_resource path="res://girl/bg_light_mask.png" type="Texture" id=12]
+[ext_resource path="res://scripts/camera.gd" type="Script" id=13]
+[ext_resource path="res://sfx/mplayer.tscn" type="PackedScene" id=14]
+[ext_resource path="res://girl/dust/dust_run.tscn" type="PackedScene" id=15]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 5.0
+height = 12.0
+
+[sub_resource type="Animation" id=2]
+
+length = 10.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("eyes:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 2.1, 2.2, 5, 5.1, 5.2, 6.5, 6.6, 6.7, 9, 9.1, 9.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 4, 3, 2, 4, 3, 2, 4, 3, 2, 4, 3, 2 ]
+}
+
+[sub_resource type="Animation" id=3]
+
+length = 0.4
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotate/girl:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 31, 32, 33, 34 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotate/eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 2, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("big_gun:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotate/girl:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 61, 62, 63, 64, 65, 66, 67, 68 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotate/eyes:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("big_gun:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "deadfx"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+
+length = 0.6
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotate/girl:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 9, 10, 11 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotate/eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("big_gun:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 1 ), Vector2( 0, 2 ), Vector2( 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+
+length = 0.4
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotate/girl:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 22, 23, 24, 25 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotate/eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -1 ), Vector2( 1, 0 ), Vector2( 2, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("big_gun:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 2 ), Vector2( 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+
+length = 0.24
+loop = false
+step = 0.08
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotate/girl:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 27, 28, 29 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotate/eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.08 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("big_gun:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.08 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+
+resource_name = "run"
+length = 0.56
+loop = true
+step = 0.07
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotate/girl:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42, 0.49 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 16, 17, 18, 19, 20 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotate/eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42, 0.49 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 2, 1 ), Vector2( 2, 0 ), Vector2( 2, -1 ), Vector2( 2, 1 ), Vector2( 2, 1 ), Vector2( 2, 0 ), Vector2( 2, -1 ), Vector2( 2, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("big_gun:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42, 0.49 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, 2 ), Vector2( 1, 1 ), Vector2( 1, 0 ), Vector2( 1, 1 ), Vector2( 1, 2 ), Vector2( 1, 1 ), Vector2( 1, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.07, 0.21, 0.35, 0.49 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "dust_run"
+}, {
+"args": [  ],
+"method": "step"
+}, {
+"args": [  ],
+"method": "dust_run"
+}, {
+"args": [  ],
+"method": "step"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+
+resource_name = "run_back"
+length = 0.56
+loop = true
+step = 0.07
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotate/girl:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42, 0.49 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 89, 90, 91, 92, 93, 94, 95, 96 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotate/eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42, 0.49 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( 0, 0 ), Vector2( 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("big_gun:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42, 0.49 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( -1, 1 ), Vector2( -1, 0 ), Vector2( -1, 1 ), Vector2( -1, 2 ), Vector2( -1, 1 ), Vector2( -1, 0 ), Vector2( -1, 1 ), Vector2( -1, 2 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.14, 0.28, 0.42 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "step"
+}, {
+"args": [  ],
+"method": "dust_run"
+}, {
+"args": [  ],
+"method": "step"
+}, {
+"args": [  ],
+"method": "dust_run"
+} ]
+}
+
+[sub_resource type="Animation" id=10]
+
+length = 0.64
+loop = true
+step = 0.08
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotate/girl:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.4, 0.48, 0.56 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 89, 90, 91, 92, 93, 94, 94, 95, 96 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotate/eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.4, 0.48, 0.56 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 1 ), Vector2( 0, -1 ), Vector2( 0, 7 ), Vector2( 0, 0 ), Vector2( 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("big_gun:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 9 ), Vector2( 0, 8 ), Vector2( 0, 9 ), Vector2( 0, 10 ), Vector2( 0, 9 ), Vector2( 0, 8 ), Vector2( 0, 9 ), Vector2( 0, 10 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.16, 0.32, 0.48 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "step"
+}, {
+"args": [  ],
+"method": "dust_run"
+}, {
+"args": [  ],
+"method": "step"
+}, {
+"args": [  ],
+"method": "dust_run"
+} ]
+}
+
+[sub_resource type="Animation" id=11]
+
+length = 0.64
+loop = true
+step = 0.08
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotate/girl:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.4, 0.48, 0.56 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 16, 17, 18, 18, 19, 20 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotate/eyes:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.4, 0.48, 0.56 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 2, 1 ), Vector2( 2, 0 ), Vector2( 2, -1 ), Vector2( 2, 1 ), Vector2( 2, 1 ), Vector2( 2, 8 ), Vector2( 2, 8 ), Vector2( 2, -1 ), Vector2( 2, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("big_gun:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.4, 0.48, 0.56 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 2 ), Vector2( 0, 1 ), Vector2( 0, 0 ), Vector2( 0, 1 ), Vector2( 0, 2 ), Vector2( 0, 1 ), Vector2( 0, 9 ), Vector2( 0, 0 ), Vector2( 0, 1 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.08, 0.24, 0.48, 0.56 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "dust_run"
+}, {
+"args": [  ],
+"method": "step"
+}, {
+"args": [  ],
+"method": "dust_run"
+}, {
+"args": [  ],
+"method": "step"
+} ]
+}
+
+[sub_resource type="Animation" id=12]
+
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("rotate/girl:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("rotate/eyes:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("rotate/eyes:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("big_gun:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("big_gun:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 98 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("big_gun:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("rotate/eyes:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="RectangleShape2D" id=13]
+
+custom_solver_bias = 0.0
+extents = Vector2( 6, 10 )
+
+[sub_resource type="RectangleShape2D" id=14]
+
+custom_solver_bias = 0.0
+extents = Vector2( 4, 8 )
+
+[sub_resource type="RectangleShape2D" id=15]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8, 11 )
+
+[node name="girl" type="KinematicBody2D" index="0"]
+
+light_mask = 2
+z_index = 5
+input_pickable = false
+collision_layer = 2
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Transform", "Visibility", "Z Index", "collision" ]
+
+[node name="collision" type="CollisionShape2D" parent="." index="0"]
+
+position = Vector2( 0, -3 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="rotate" type="Node2D" parent="." index="1"]
+
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="girl" type="Sprite" parent="rotate" index="0"]
+
+light_mask = 2
+texture = ExtResource( 2 )
+offset = Vector2( 0, -8 )
+vframes = 8
+hframes = 16
+frame = 13
+_sections_unfolded = [ "Animation", "Offset", "Transform", "Visibility", "Z Index" ]
+
+[node name="eyes" type="Sprite" parent="rotate" index="1"]
+
+light_mask = 2
+position = Vector2( 2, 1 )
+texture = ExtResource( 2 )
+offset = Vector2( 0, -8 )
+vframes = 8
+hframes = 16
+frame = 2
+_sections_unfolded = [ "Animation", "Transform", "Visibility", "Z Index" ]
+
+[node name="eyes_anim" type="AnimationPlayer" parent="rotate" index="2"]
+
+root_node = NodePath("..")
+autoplay = "cycle"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/cycle = SubResource( 2 )
+blend_times = [  ]
+
+[node name="down_left" type="RayCast2D" parent="." index="2"]
+
+position = Vector2( -4, 8 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 2 )
+collision_mask = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="down_right" type="RayCast2D" parent="." index="3"]
+
+position = Vector2( 4, 8 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 2 )
+collision_mask = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="big_gun" parent="." index="4" instance=ExtResource( 3 )]
+
+light_mask = 2
+position = Vector2( 1, 2 )
+_sections_unfolded = [ "Animation", "Offset", "Transform", "Visibility", "Z Index" ]
+
+[node name="anim" type="AnimationPlayer" parent="." index="5"]
+
+root_node = NodePath("..")
+autoplay = "start"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/fall = SubResource( 3 )
+anims/hit = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/jump = SubResource( 6 )
+anims/jump_trans = SubResource( 7 )
+anims/run = SubResource( 8 )
+anims/run_back = SubResource( 9 )
+anims/run_back_broken = SubResource( 10 )
+anims/run_broken = SubResource( 11 )
+anims/start = SubResource( 12 )
+blend_times = [  ]
+
+[node name="states" type="Node" parent="." index="6"]
+
+[node name="idle" type="Node" parent="states" index="0"]
+
+script = ExtResource( 4 )
+
+[node name="fall" type="Node" parent="states" index="1"]
+
+script = ExtResource( 5 )
+
+[node name="run" type="Node" parent="states" index="2"]
+
+script = ExtResource( 6 )
+
+[node name="jump" type="Node" parent="states" index="3"]
+
+script = ExtResource( 7 )
+
+[node name="double_jump" type="Node" parent="states" index="4"]
+
+script = ExtResource( 8 )
+
+[node name="interact" type="Node" parent="states" index="5"]
+
+script = ExtResource( 9 )
+
+[node name="altar" type="Node" parent="states" index="6"]
+
+script = ExtResource( 10 )
+
+[node name="hit" type="Node" parent="states" index="7"]
+
+script = ExtResource( 11 )
+
+[node name="interact_box" type="Area2D" parent="." index="7"]
+
+visible = false
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+monitorable = false
+collision_layer = 0
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="collision" type="CollisionShape2D" parent="interact_box" index="0"]
+
+position = Vector2( 0, -2 )
+shape = SubResource( 13 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="bg_light" type="Light2D" parent="." index="8"]
+
+enabled = true
+editor_only = false
+texture = ExtResource( 12 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 0.960938, 0.808269, 0.446686, 1 )
+energy = 0.6
+mode = 0
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 4
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 4
+_sections_unfolded = [ "Range", "Shadow", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="camera_target" type="Node2D" parent="." index="9"]
+
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="camera" type="Camera2D" parent="camera_target" index="0"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+script = ExtResource( 13 )
+_sections_unfolded = [ "Drag Margin", "Smoothing", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="hitbox" type="Area2D" parent="." index="10"]
+
+visible = false
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 0
+collision_mask = 2048
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="hit_collision" type="CollisionShape2D" parent="hitbox" index="0"]
+
+shape = SubResource( 14 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="reward" type="Area2D" parent="." index="11"]
+
+visible = false
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 512
+collision_mask = 512
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="reward" index="0"]
+
+position = Vector2( 0, -3 )
+shape = SubResource( 15 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="mplayer" parent="." index="12" instance=ExtResource( 14 )]
+
+bus = "sfx"
+
+[node name="dust_run" parent="." index="13" instance=ExtResource( 15 )]
+
+visible = false
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+
+[connection signal="area_entered" from="reward" to="." method="_on_reward_area_entered"]
+
+

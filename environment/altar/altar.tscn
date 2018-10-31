@@ -1,0 +1,327 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://environment/altar/altar.gd" type="Script" id=1]
+[ext_resource path="res://environment/tileset.png" type="Texture" id=2]
+[ext_resource path="res://environment/altar/altar_active.png" type="Texture" id=3]
+[ext_resource path="res://sfx/magnet.wav" type="AudioStream" id=4]
+[ext_resource path="res://sfx/enemy_explode.wav" type="AudioStream" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 36, 3 )
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "active"
+length = 2.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("tileset_active:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+
+resource_name = "end"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("tileset_active:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("tileset_active:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("altar_active:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("altar_active:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -27 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+
+resource_name = "start"
+length = 4.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("altar_active:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("altar_active:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("anim_3")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "cycle" ],
+"method": "play"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("altar_active:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.8, 3.8 ),
+"transitions": PoolRealArray( 1, -4, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -27 ), Vector2( 0, -27 ), Vector2( 0, -54 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("explode:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=6]
+
+resource_name = "cycle"
+length = 0.5
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("altar_active:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11, 12 ]
+}
+
+[sub_resource type="CircleShape2D" id=7]
+
+custom_solver_bias = 0.0
+radius = 35.0143
+
+[node name="altar" type="StaticBody2D" index="0" groups=[
+"altar",
+]]
+
+z_index = 3
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Visibility", "Z Index" ]
+
+[node name="collision" type="CollisionShape2D" parent="." index="0"]
+
+visible = false
+position = Vector2( 0, -3 )
+shape = SubResource( 1 )
+one_way_collision = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="tileset" type="Sprite" parent="." index="1"]
+
+position = Vector2( 0, -32 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 80, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="tileset_active" type="Sprite" parent="." index="2"]
+
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, -32 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 80, 0, 80, 64 )
+_sections_unfolded = [ "Region", "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="altar_active" type="Sprite" parent="." index="3"]
+
+position = Vector2( 0, -27 )
+texture = ExtResource( 3 )
+vframes = 4
+hframes = 4
+_sections_unfolded = [ "Animation", "Visibility" ]
+
+[node name="anim" type="AnimationPlayer" parent="." index="4"]
+
+root_node = NodePath("..")
+autoplay = "start"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/active = SubResource( 2 )
+anims/end = SubResource( 3 )
+anims/start = SubResource( 4 )
+blend_times = [  ]
+
+[node name="anim_2" type="AnimationPlayer" parent="." index="5"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/start = SubResource( 5 )
+blend_times = [  ]
+
+[node name="anim_3" type="AnimationPlayer" parent="." index="6"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/cycle = SubResource( 6 )
+blend_times = [  ]
+
+[node name="interaction_box" type="Area2D" parent="." index="7"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="collision" type="CollisionShape2D" parent="interaction_box" index="0"]
+
+position = Vector2( 0, -22 )
+shape = SubResource( 7 )
+
+[node name="interact_position" type="Position2D" parent="." index="8"]
+
+position = Vector2( 0, -27 )
+
+[node name="spintimer" type="Timer" parent="." index="9"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = true
+autostart = false
+
+[node name="magnet" type="AudioStreamPlayer" parent="." index="10"]
+
+stream = ExtResource( 4 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "sfx"
+
+[node name="explode" type="AudioStreamPlayer" parent="." index="11"]
+
+stream = ExtResource( 5 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "sfx"
+
+[connection signal="timeout" from="spintimer" to="." method="_on_spintimer_timeout"]
+
+

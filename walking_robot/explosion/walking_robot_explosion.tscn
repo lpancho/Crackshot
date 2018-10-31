@@ -1,0 +1,224 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://walking_robot/explosion/walking_robot_explosion.gd" type="Script" id=1]
+[ext_resource path="res://walking_robot/walking_robot.png" type="Texture" id=2]
+[ext_resource path="res://walking_robot/explosion/part.gd" type="Script" id=3]
+[ext_resource path="res://sfx/enemy_explode.wav" type="AudioStream" id=4]
+
+[node name="walking_robot_explosion" type="Node2D"]
+
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+visible = false
+modulate = Color( 0.433594, 0.376007, 0.376007, 1 )
+light_mask = 2
+texture = ExtResource( 2 )
+vframes = 8
+hframes = 8
+frame = 20
+_sections_unfolded = [ "Visibility" ]
+
+[node name="part_0" type="RigidBody2D" parent="." index="1"]
+
+position = Vector2( 2, 3 )
+input_pickable = false
+collision_layer = 0
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.5
+gravity_scale = 5.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 3 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="part_sprite" type="Sprite" parent="part_0" index="0"]
+
+light_mask = 2
+texture = ExtResource( 2 )
+vframes = 8
+hframes = 8
+frame = 40
+_sections_unfolded = [ "Animation", "Visibility" ]
+
+[node name="colpol" type="CollisionPolygon2D" parent="part_0" index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -6, -4, 5, -4, 5, 3, -6, 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="part_1" type="RigidBody2D" parent="." index="2"]
+
+position = Vector2( 0, 10 )
+input_pickable = false
+collision_layer = 0
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.5
+gravity_scale = 5.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 3 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="part_sprite" type="Sprite" parent="part_1" index="0"]
+
+light_mask = 2
+texture = ExtResource( 2 )
+vframes = 8
+hframes = 8
+frame = 41
+_sections_unfolded = [ "Animation", "Visibility" ]
+
+[node name="colpol" type="CollisionPolygon2D" parent="part_1" index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -3, -4, 4, -4, 4, 3, -3, 3 )
+
+[node name="part_2" type="RigidBody2D" parent="." index="3"]
+
+position = Vector2( 1, 8 )
+input_pickable = false
+collision_layer = 0
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.5
+gravity_scale = 5.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 3 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="part_sprite" type="Sprite" parent="part_2" index="0"]
+
+light_mask = 2
+texture = ExtResource( 2 )
+vframes = 8
+hframes = 8
+frame = 42
+_sections_unfolded = [ "Animation", "Visibility" ]
+
+[node name="colpol" type="CollisionPolygon2D" parent="part_2" index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -5, -1, 4, -1, 4, 1, -5, 1 )
+
+[node name="part_3" type="RigidBody2D" parent="." index="4"]
+
+position = Vector2( -3, 12 )
+input_pickable = false
+collision_layer = 0
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.5
+gravity_scale = 5.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 3 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="part_sprite" type="Sprite" parent="part_3" index="0"]
+
+light_mask = 2
+texture = ExtResource( 2 )
+vframes = 8
+hframes = 8
+frame = 43
+_sections_unfolded = [ "Animation", "Visibility" ]
+
+[node name="colpol" type="CollisionPolygon2D" parent="part_3" index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -2, -2, 2, -2, 2, 4, -2, 4 )
+
+[node name="part_4" type="RigidBody2D" parent="." index="5"]
+
+position = Vector2( 7, 12 )
+input_pickable = false
+collision_layer = 0
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.5
+gravity_scale = 5.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 3 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="part_sprite" type="Sprite" parent="part_4" index="0"]
+
+light_mask = 2
+position = Vector2( -5, 0 )
+texture = ExtResource( 2 )
+vframes = 8
+hframes = 8
+frame = 44
+_sections_unfolded = [ "Animation", "Visibility" ]
+
+[node name="colpol" type="CollisionPolygon2D" parent="part_4" index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -7, -2, -3, -2, -3, 4, -7, 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="6"]
+
+stream = ExtResource( 4 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "sfx"
+
+

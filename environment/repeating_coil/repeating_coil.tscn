@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://environment/repeating_coil/repating_coil2.png" type="Texture" id=1]
+[ext_resource path="res://environment/repeating_coil/repeating_coil.gd" type="Script" id=2]
+[ext_resource path="res://environment/repeating_coil/repating_coil3.png" type="Texture" id=3]
+[ext_resource path="res://environment/repeating_coil/repating_coil4.png" type="Texture" id=4]
+[ext_resource path="res://environment/repeating_coil/repating_coil5.png" type="Texture" id=5]
+[ext_resource path="res://environment/repeating_coil/repating_coil6.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "cycle"
+length = 0.8
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "start"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 4096, 4 )
+
+[node name="repeating_coil" type="Sprite"]
+
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 8192, 32 )
+script = ExtResource( 2 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[node name="anim" type="AnimationPlayer" parent="." index="0"]
+
+root_node = NodePath("..")
+autoplay = "start"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/cycle = SubResource( 1 )
+anims/start = SubResource( 2 )
+blend_times = [  ]
+
+[node name="damagebox" type="Area2D" parent="." index="1"]
+
+position = Vector2( 0, 16 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2048
+collision_mask = 0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="collision" type="CollisionShape2D" parent="damagebox" index="0"]
+
+position = Vector2( 4096, 12 )
+shape = SubResource( 3 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+

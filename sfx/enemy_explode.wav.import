@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/enemy_explode.wav-241fb7f35ae16c11bbc1a8099b4a13a5.sample"
+
+[deps]
+
+source_file="res://sfx/enemy_explode.wav"
+dest_files=[ "res://.import/enemy_explode.wav-241fb7f35ae16c11bbc1a8099b4a13a5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
